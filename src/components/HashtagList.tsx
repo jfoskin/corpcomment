@@ -1,9 +1,16 @@
 export default function HashtagList() {
-  return (
-    <ul>HashtagList
-      <li>#hashtag1</li>
-      <li>#hashtag2</li>
-      <li>#hashtag3</li>
-    </ul>
-  )
+	return (
+		<ul className="hashtags">
+			HashtagList
+			<li>
+				<button>#hashtag1</button>
+			</li>
+			<li>
+				<button>#hashtag2</button>
+			</li>
+			<li>
+				<button>#hashtag3</button>
+			</li>
+		</ul>
+	);
 }
