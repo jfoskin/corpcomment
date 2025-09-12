@@ -6,21 +6,21 @@ const feedbackItems = [
 		badgeLetter: "B",
 		companyName: "ByteGrad",
 		text: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae suscipit dolor sequi aperiam aliquid error.",
-		daysAgo: "2d",
+		daysAgo: 9,
 	},
 	{
 		upvote: 7,
 		badgeLetter: "S",
 		companyName: "starbuck",
 		text: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae suscipit dolor sequi aperiam aliquid error.",
-		daysAgo: "2d",
+		daysAgo: 2,
 	},
 	{
 		upvote: 4,
 		badgeLetter: "N",
 		companyName: "Nickelodeon",
 		text: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae suscipit dolor sequi aperiam aliquid error.",
-		daysAgo: "3d",
+		daysAgo: 3,
 	},
 ];
 

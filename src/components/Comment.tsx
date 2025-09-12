@@ -1,10 +1,18 @@
 import { TriangleUpIcon } from "@radix-ui/react-icons";
 
-type CommentProps = {
-	upvoteCount?: number;
+type FeedbackItem = {
+	upvoteCount: number;
+	badgeLetter: string;
+	companyName: string;
+	text: string;
+	daysAgo: number;
 };
 
-export default function Comment({ feedbackItem }) {
+type CommentProps = {
+	feedbackItem: FeedbackItem;
+};
+
+export default function Comment({ feedbackItem }: CommentProps) {
 	return (
 		<li className="feedback">
 			<button>
@@ -18,7 +26,7 @@ export default function Comment({ feedbackItem }) {
 				<p>{feedbackItem.companyName}</p>
 				<p>{feedbackItem.text}</p>
 			</div>
-			<p>{feedbackItem.daysAgo}</p>
+			<p>{`${feedbackItem.daysAgo}d`}</p>
 		</li>
 	);
 }
