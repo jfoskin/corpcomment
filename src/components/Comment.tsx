@@ -6,6 +6,7 @@ type FeedbackItem = {
 	companyName: string;
 	text: string;
 	daysAgo: number;
+	id: number;
 };
 
 type CommentProps = {
