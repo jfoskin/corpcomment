@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { MAXCHAR } from "../lib/constants";
+import { MAXCHAR } from "../../lib/constants";
 
-import Button from "./Button";
-import Count from "./Count";
+import Button from "../Button";
+import Count from "../Count";
 
 type FeedbackFormProps = {
 	onAddComment: (text: string) => void;

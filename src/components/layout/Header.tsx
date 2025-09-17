@@ -1,7 +1,7 @@
-import Logo from "./Logo";
-import PageHeader from "./PageHeader";
-import Pattern from "./Pattern";
-import FeedbackForm from "./FeedbackForm";
+import Logo from "../Logo";
+import PageHeader from "../PageHeader";
+import Pattern from "../Pattern";
+import FeedbackForm from "../feedback/FeedbackForm";
 
 type THeaderProps = {
 	handleAddComment: (text: string) => void;

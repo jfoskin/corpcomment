@@ -1,6 +1,6 @@
 import Header from "./Header";
-import CorpCommentsList from "./CorpCommentsList";
-import { TFeedbackItem } from "../lib/types";
+import CorpCommentsList from "../../components/feedback/CorpCommentsList";
+import { TFeedbackItem } from "../../lib/types";
 
 type ContainerProps = {
 	feedbackItems: TFeedbackItem[];

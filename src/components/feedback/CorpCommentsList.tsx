@@ -1,7 +1,7 @@
 import Comment from "./Comment";
-import Spinner from "./Spinner";
-import ErrorMessage from "./ErrorMessage";
-import { TFeedbackItem } from "../lib/types";
+import Spinner from "../Spinner";
+import ErrorMessage from "../ErrorMessage";
+import { TFeedbackItem } from "../../lib/types";
 
 type CorpCommentsListProps = {
 	feedbackItems: TFeedbackItem[];
