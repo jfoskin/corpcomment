@@ -10,7 +10,7 @@ function App() {
 	const [isLoading, setIsLoading] = useState(false);
 	const [errorMessage, setErrorMessage] = useState("");
 
-	const handleAddComment = (text: string) => {
+	const handleAddComment = async (text: string) => {
 		const companyName = text
 			.split(" ")
 			.find((word) => word.includes("#"))!
@@ -19,10 +19,22 @@ function App() {
 		const newComment: TFeedbackItem = {
 			upvoteCount: 0,
 			text: text,
-			companyName: companyName,
+			company: companyName,
 			badgeLetter: companyName.charAt(0).toUpperCase(),
 		};
 		setFeedbackItems([...feedbackItems, newComment]);
+
+		await fetch(
+			"https://bytegrad.com/course-assets/projects/corpcomment/api/feedbacks",
+			{
+				method: "POST",
+				body: JSON.stringify(newComment),
+				headers: {
+					Accept: "application/json",
+					"Content-Type": "application/json",
+				},
+			}
+		);
 	};
 
 	useEffect(() => {
@@ -72,7 +84,7 @@ function App() {
 				feedbackItems={feedbackItems}
 				isLoading={isLoading}
 				errorMessage={errorMessage}
-				onAddComment={handleAddComment}
+				handleAddComment={handleAddComment}
 			/>
 			<HashtagList />
 		</div>

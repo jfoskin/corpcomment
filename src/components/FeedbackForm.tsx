@@ -4,7 +4,11 @@ import { MAXCHAR } from "../lib/constants";
 import Button from "./Button";
 import Count from "./Count";
 
-export default function FeedbackForm() {
+type FeedbackFormProps = {
+	onAddComment: (text: string) => void;
+};
+
+export default function FeedbackForm({ onAddComment }: FeedbackFormProps) {
 	const [text, setText] = useState("");
 	const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
 		const newText = event.target.value;
@@ -15,8 +19,16 @@ export default function FeedbackForm() {
 
 		setText(newText);
 	};
+
+	const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
+
+		onAddComment(text);
+		setText("");
+	};
+
 	return (
-		<form className="form">
+		<form onSubmit={handleSubmit} className="form">
 			<textarea
 				id="feedback-textarea"
 				placeholder="What's happening?"
