@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import Footer from "./layout/Footer";
 import Container from "./layout/Container";
@@ -9,10 +9,19 @@ function App() {
 	const [feedbackItems, setFeedbackItems] = useState<TFeedbackItem[]>([]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [errorMessage, setErrorMessage] = useState("");
+	const [selectedCompany, setSelectedCompany] = useState("");
 
-	const companyList = feedbackItems
-		.map((item) => item.company)
-		.filter((company, index, array) => array.indexOf(company) === index);
+	const filteredFeedbackItems = useMemo(() => {
+		selectedCompany
+			? feedbackItems.filter((item) => item.company === selectedCompany)
+			: feedbackItems;
+	}, [selectedCompany, feedbackItems]);
+
+	const companyList = useMemo(() => {
+		feedbackItems
+			.map((item) => item.company)
+			.filter((company, index, array) => array.indexOf(company) === index);
+	}, [feedbackItems]);
 
 	const handleAddComment = async (text: string) => {
 		const companyName = text
@@ -21,10 +30,12 @@ function App() {
 			.substring(1);
 
 		const newComment: TFeedbackItem = {
+			id: new Date().getTime(),
 			upvoteCount: 0,
 			text: text,
 			company: companyName,
 			badgeLetter: companyName.charAt(0).toUpperCase(),
+			daysAgo: 0,
 		};
 		setFeedbackItems([...feedbackItems, newComment]);
 
@@ -39,6 +50,10 @@ function App() {
 				},
 			}
 		);
+	};
+
+	const handleSelectedCompany = (company: string) => {
+		setSelectedCompany(company);
 	};
 
 	useEffect(() => {
@@ -85,12 +100,15 @@ function App() {
 		<div className="app">
 			<Footer />
 			<Container
-				feedbackItems={feedbackItems}
+				feedbackItems={filteredFeedbackItems}
 				isLoading={isLoading}
 				errorMessage={errorMessage}
 				handleAddComment={handleAddComment}
 			/>
-			<HashtagList companyList={companyList} />
+			<HashtagList
+				companyList={companyList}
+				handleSelectedCompany={handleSelectedCompany}
+			/>
 		</div>
 	);
 }
