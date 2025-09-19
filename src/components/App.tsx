@@ -11,17 +11,21 @@ function App() {
 	const [errorMessage, setErrorMessage] = useState("");
 	const [selectedCompany, setSelectedCompany] = useState("");
 
-	const filteredFeedbackItems = useMemo(() => {
-		selectedCompany
-			? feedbackItems.filter((item) => item.company === selectedCompany)
-			: feedbackItems;
-	}, [selectedCompany, feedbackItems]);
+	const filteredFeedbackItems = useMemo(
+		() =>
+			selectedCompany
+				? feedbackItems.filter((item) => item.company === selectedCompany)
+				: feedbackItems,
+		[selectedCompany, feedbackItems]
+	);
 
-	const companyList = useMemo(() => {
-		feedbackItems
-			.map((item) => item.company)
-			.filter((company, index, array) => array.indexOf(company) === index);
-	}, [feedbackItems]);
+	const companyList = useMemo(
+		() =>
+			feedbackItems
+				.map((item) => item.company)
+				.filter((company, index, array) => array.indexOf(company) === index),
+		[feedbackItems]
+	);
 
 	const handleAddComment = async (text: string) => {
 		const companyName = text
