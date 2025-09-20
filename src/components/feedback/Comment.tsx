@@ -13,6 +13,7 @@ export default function Comment({ feedbackItem }: CommentProps) {
 
 	const handleUpvoteCount = (event: React.MouseEvent<HTMLButtonElement>) => {
 		setUpvoteCount((prev) => prev + 1);
+		event.currentTarget.disabled = true; // Disable the button after one click
 		event.stopPropagation();
 	};
 
