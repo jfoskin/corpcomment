@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MAXCHAR } from "../../lib/constants";
+// import { MAXCHAR } from "../../lib/constants";
 
 import Button from "../Button";
 import Count from "../Count";
@@ -16,7 +16,7 @@ export default function FeedbackForm({ onAddComment }: FeedbackFormProps) {
 	const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
 		const newText = event.target.value;
 
-		if (newText.length > MAXCHAR) {
+		if (newText.length > 150) {
 			return;
 		}
 
