@@ -1,19 +1,17 @@
 import Comment from "./Comment";
 import Spinner from "../Spinner";
 import ErrorMessage from "../ErrorMessage";
-import { TFeedbackItem } from "../../lib/types";
+import { useFeedbackItemsStore } from "../../stores/feedbackItemsStore";
 
-type CorpCommentsListProps = {
-	feedbackItems: TFeedbackItem[];
-	isLoading: boolean;
-	errorMessage: string;
-};
+export default function CorpCommentsList() {
+	const isLoading = useFeedbackItemsStore((state) => state.isLoading);
+	const errorMessage = useFeedbackItemsStore((state) => state.errorMessage);
+	const filteredFeedbackItems = useFeedbackItemsStore((state) =>
+		state.getFilteredFeedbackItems()
+	);
 
-export default function CorpCommentsList({
-	feedbackItems,
-	isLoading,
-	errorMessage,
-}: CorpCommentsListProps) {
+	// const feedbackItems = filteredFeedbackItems;
+
 	return (
 		<ol className="feedback-list">
 			{isLoading && <Spinner />}
@@ -21,7 +19,7 @@ export default function CorpCommentsList({
 			{/* || errorMessage ? <ErrorMessage /> : null */}
 			{/* // when returning a list you don't always have to open the function with
 		{} you can use () instead of needing to write return */}
-			{feedbackItems.map((feedbackItem) => (
+			{filteredFeedbackItems.map((feedbackItem) => (
 				<Comment feedbackItem={feedbackItem} key={feedbackItem.id} />
 			))}
 			{/* the only difference in the way the function is written about is the retuen 

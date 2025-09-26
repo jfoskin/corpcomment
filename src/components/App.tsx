@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import Footer from "./layout/Footer";
 import Container from "./layout/Container";
 import HashtagList from "./hashtag/HashtagList";
-import { TFeedbackItem } from "../lib/types";
+import { useFeedbackItemsStore } from "../stores/feedbackItemsStore";
 
 function App() {
 	// const [feedbackItems, setFeedbackItems] = useState<TFeedbackItem[]>([]);
@@ -100,6 +100,13 @@ function App() {
 	// 	});
 	// }, []);
 
+	const fetchFeedbackItems = useFeedbackItemsStore(
+		(state) => state.fetchFeedbackItems
+	);
+
+	useEffect(() => {
+		fetchFeedbackItems();
+	}, [fetchFeedbackItems]);
 	return (
 		<div className="app">
 			<Footer />

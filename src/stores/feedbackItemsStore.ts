@@ -15,10 +15,10 @@ export const useFeedbackItemsStore = create((set,get)=>({
     getFilteredFeedbackItems: ()=>{
         const state = get();
         
-        return state.selectedCompany
+        return (state.selectedCompany
 				? state.feedbackItems.filter((item) => item.company === selectedCompany)
 				: state.feedbackItems,
-    },
+)},
     addItemToList: async (text: string) => {
             const companyName = text
                 .split(" ")
